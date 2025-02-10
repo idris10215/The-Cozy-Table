@@ -1,0 +1,100 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="body">
+  
+  <div class="horizontal-scroll-container">
+    <!-- Today's Orders -->
+    <div class="scroll-card">
+      <h4>Today's Orders</h4>
+      <div class="circular-graph" data-value="0">
+        <span>{{ totalOrders }}</span> <!-- Displays total orders -->
+      </div>
+      Orders placed today!
+    </div>
+  
+    <!-- Total Revenue -->
+    <div class="scroll-card">
+      <h4>Total Revenue</h4>
+      <div class="circular-graph" data-value="0">
+        <span>₹{{ totalIncome.toFixed(2) }}</span> <!-- Displays total revenue -->
+      </div>
+      Revenue generated today!
+    </div>
+  
+    <!-- New Customers -->
+    <div class="scroll-card">
+      <h4>New Customers</h4>
+      <div class="circular-graph" data-value="0">
+        <span>{{ newCustomers }}</span> <!-- Displays new customers -->
+      </div>
+      Customers joined today!
+    </div>
+  </div>
+  
+  
+  <div class="container">
+    <!-- Income Graphs Section -->
+    <section class="income-graphs">
+      <h2>Income Overview</h2>
+      <div class="graph-container">
+
+        <!-- Monthly Income Graph -->
+        <div class="graph">
+          <h4>Daily Income</h4>
+          <canvas id="monthlyCanvas" style="width: 100%; height: 300px;"></canvas>
+          <div class="date-selector">
+            <label for="monthly-month">Select Month:</label>
+            <input type="month" id="monthly-month" (change)="onMonthlyMonthChange($event)" />
+          </div>
+        </div>
+
+        <!-- Yearly Income Graph -->
+        <div class="graph">
+          <h4>Monthly Income</h4>
+          <canvas id="yearlyCanvas" style="width: 100%; height: 300px;"></canvas>
+          <div class="date-selector">
+            <label for="yearly-year">Select Year:</label>
+            <input type="number" id="yearly-year" min="2020" max="2100" (change)="onYearlyYearChange($event)" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bubble Graph Section -->
+    <section class="menu-sales">
+      <div class="bubble-graph">
+        <h4>Most Sold Menu Items</h4>
+        <canvas id="bubbleCanvas" style="width: 100%; max-width: 600px;"></canvas>
+      </div>
+
+      <!-- Table for Top-Selling Items -->
+      <div class="sales-table">
+        <h4>Most Sold Menu Items List</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Menu ID</th>
+      <th>Menu Name</th>
+      <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of mostSoldItems">
+              <td>{{ item.menuId }}</td>
+              <td>{{ item.menuName }}</td>
+              <td>{{ item.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="feedback-section">
+      <h2>Customer Feedbacks</h2>
+      <div class="feedback-graph">
+        <canvas id="feedbackCanvas" style="width: 100%; max-width: 600px;"></canvas>
+      </div>
+    </section>
+  </div>
+</div>

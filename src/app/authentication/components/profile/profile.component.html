@@ -1,0 +1,26 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="profile-container">
+  <h2>Edit Profile</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="saveChanges()">
+    <label for="fullName">Full Name:</label>
+    <input
+      id="fullName"
+      type="text"
+      formControlName="FullName"
+      required
+    />
+
+    <label for="email">Email:</label>
+    <input
+      id="email"
+      type="email"
+      formControlName="EmailAddress"
+      required
+    />
+
+    <div class="buttons">
+      <button type="submit">Save Changes</button>
+      <button type="button" (click)="goBack()">Cancel</button>
+    </div>
+  </form>
+</div>

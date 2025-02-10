@@ -1,0 +1,45 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+
+  
+    <div class="main-container">  
+        
+        <div class="sticky-filter">
+            <button class="filter-icon" (click)="toggleCategoryFilter()">☰</button>
+            <div class="category-options" [class.active]="showCategories">
+                <button class="luxury-button" (click)="filterByCategory('All')">All</button>
+                <button class="luxury-button" (click)="filterByCategory('Breakfast')">Breakfast</button>
+                <button class="luxury-button" (click)="filterByCategory('Starters')">Starters</button>
+                <button class="luxury-button" (click)="filterByCategory('Main Course')">Main Course</button>
+                <button class="luxury-button" (click)="filterByCategory('Desserts')">Desserts</button>
+                <button class="luxury-button" (click)="filterByCategory('Beverages')">Beverages</button>
+                <button class="luxury-button" (click)="filterByCategory('Salads')">Salads</button>
+                <button class="luxury-button" (click)="filterByCategory('Soup')">Soup</button>
+                <button class="luxury-button" (click)="filterByCategory('Snacks')">Snacks</button>
+                <button class="luxury-button" (click)="filterByCategory('Kids Menu')">Kids Menu</button>
+                <button class="luxury-button" (click)="filterByCategory('Indian Cuisine')">Indian Cuisine</button>
+                <button class="luxury-button" (click)="filterByCategory('Mexican Cuisine')">Mexican Cuisine</button>
+                <button class="luxury-button" (click)="filterByCategory('Chinese Cuisine')">Chinese Cuisine</button>
+                <button class="luxury-button" (click)="filterByCategory('Italian Cuisine')">Italian Cuisine</button>
+                <button class="luxury-button" (click)="filterByCategory('Signature Dishes')">Signature Dishes</button>
+            </div>
+        </div>
+          
+        <div class="food-items">
+            <pre>Food Menu</pre>
+            <div class="search-container">
+                <input class="search-input" type="text" placeholder="Search dishes..." (input)="searchMenu($event)" />
+              </div>
+              
+            <div class="food-item" *ngFor="let item of filteredMenuItems">
+                <img [src]="item.image" [alt]="item.name">
+                <h2>{{ item.name }}</h2><br>
+                <p>₹{{ item.price }}</p>
+                <div class="actions">
+                    <button class="info-icon" type="button" (click)="showDescription(item.description)">ⓘ</button>
+                    <button class="add-to-cart" type="button" (click)="addToCart(item)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+

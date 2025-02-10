@@ -1,0 +1,62 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<router-outlet></router-outlet>
+<div class="container">
+  
+  <div class="wrapper">
+  <div class="image-container">
+    <img src="/assets/images/login.jpg" alt="Side Image">
+</div>
+  <div class="card">
+    <div class="header">
+      <h2>Sign Up</h2>
+      <h6>Register Yourself!</h6>
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- Full Name Input -->
+      <div class="input-group">
+        <label for="fullName">Full Name</label>
+        <div *ngIf="fullName?.invalid && fullName?.touched" class="error-message">
+          Full name is required.
+        </div>
+        <input formControlName="FullName" type="text" id="fullName" required>
+      </div>
+
+      <!-- Email Address Input -->
+      <div class="input-group">
+        <label for="emailAddress">Email Address</label>
+        <div *ngIf="emailAddress?.invalid && emailAddress?.touched" class="error-message">
+          Please enter a valid email address.
+        </div>
+        <input formControlName="EmailAddress" type="email" id="emailAddress" required>
+      </div>
+
+      <!-- Mobile Number Input -->
+      <div class="input-group">
+        <label for="mobileNumber">Mobile Number</label>
+        <div *ngIf="mobileNumber?.invalid && mobileNumber?.touched" class="error-message">
+          Mobile Number must be of 10 digits.
+        </div>
+        <input formControlName="MobileNumber" type="number" id="mobileNumber" required>
+      </div>
+
+      <!-- Password Input -->
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div *ngIf="password?.invalid && password?.touched" class="error-message">
+          Password is required.
+        </div>
+        <input formControlName="Password" type="password" id="password" required>
+      </div>
+
+      <p class="form-text">We'll never share your details with anyone else.</p>
+
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <p class="login-link">
+      <a routerLink="/login">Already a User? Click here to login!</a>
+    </p>
+  </div>
+</div>
+</div>

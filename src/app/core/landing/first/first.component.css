@@ -1,0 +1,194 @@
+/* Import the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap');
+/* General Styles */
+.body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background-color: #fff;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* Header Styles */
+.admin-header {
+  background-color: #fff; /* White header background */
+  color: #333; /* Dark text for default link color */
+  padding: 1rem 2rem;
+  box-shadow: 0 10px 10px 10px  #c54b86; /* Pink shadow below */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 10px solid  #c54b86; /* Subtle bottom border */
+  transform: translateY(0);
+}
+
+.admin-header:hover {
+  transform: translateY(-5px); /* Slightly lift the header on hover */
+  box-shadow: 0 25px 35px rgba(212, 103, 163, 0.3); /* Stronger shadow on hover */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  transition: transform 0.3s ease; /* Smooth transition for logo or content change */
+}
+
+/* Shrink the header when scrolling */
+.admin-header.shrink {
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transform: translateY(0); /* Reset transform effect */
+}
+
+/* Logo Styles */
+.logo {
+  margin-right: 10px;
+  transition: transform 0.3s ease; /* Apply a transition effect to the logo */
+}
+
+.logo img {
+  max-height: 65px;
+}
+
+.logo:hover {
+  transform: rotate(5deg); /* Subtle rotation effect on logo hover */
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.nav-buttons a {
+  color: #4d9b43; /* Green link color */
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
+  cursor: pointer;
+}
+
+.nav-buttons a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4d9b43; /* Green hover background */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.nav-buttons a:hover {
+  color: white; /* White text on hover */
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.nav-buttons a:hover::before {
+  transform: scaleX(1);
+}
+
+#about h2 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* Dark background for readability */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  width: 60%;
+}
+
+.carousel-caption h3 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.carousel-caption p {
+  font-size: 18px;
+  margin: 5px 0 0;
+}
+
+
+.carousel-shadow {
+  box-shadow: 0 11px 8px rgba(0, 0, 0, 0.2); /* Adjust values to change the shadow effects */
+  border-radius: 8px; /* Optional: rounds the corners */
+}
+
+.carousel-item {
+  height: 467px;
+  object-fit:fill;
+}
+
+.about-img {
+    width: 40%;
+    display: inline-block;
+}
+
+.about-p {
+    width: 50%;
+    display: inline;
+}
+
+#about {
+    padding: 20px;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the center */
+    gap: 50px;
+    /* Space between image and text */
+    justify-content: space-around;
+}
+
+.about-img {
+    width: 50%;
+    /* Limit the image width */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.about-p {
+    margin-top: 30px;
+    max-width: 45%;
+    /* Limit the paragraph width */
+    font-size: 16px;
+    /* Adjust text size */
+    line-height: 1.6;
+}
+
+.para-1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sig-img {
+  display: block;
+    margin-top: 15px;
+}

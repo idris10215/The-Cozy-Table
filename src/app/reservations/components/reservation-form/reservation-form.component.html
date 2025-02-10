@@ -1,0 +1,92 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+<div class="container">
+<div class="reservation-form">
+  <h2>{{ isEditMode ? 'Edit' : 'Add' }} Reservation</h2>
+  <form #reservationForm="ngForm" (ngSubmit)="onSubmit()" class="parent-form">
+    
+    <div class="form-row">
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Name <span style="color: red;">*</span></label>
+        <input 
+          type="text" id="name" [(ngModel)]="reservation.name" 
+          name="name" required pattern="^[A-Za-z ]+$" #name="ngModel" class="input"
+        />
+        <div *ngIf="name.invalid && name.touched" class="error-text">⚠ Only A-Z and spaces.</div>
+      </div>
+
+      <!-- Email (Readonly) -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="reservation.email" name="email" class="input" readonly />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone">Phone <span style="color: red;">*</span></label>
+        <input 
+          type="tel" id="phone" [(ngModel)]="reservation.phone" 
+          name="phone" required pattern="^[6-9][0-9]{9}$" #phone="ngModel" 
+          class="input" (input)="validatePhoneSequence()"
+        />
+        <div *ngIf="phone.invalid && phone.touched" class="error-text">⚠ Invalid phone number</div>
+      </div>
+
+      <!-- Number of Guests -->
+      <div class="form-group">
+        <label for="guests">Guests <span style="color: red;">*</span></label>
+        <input type="number" id="guests" [(ngModel)]="reservation.guests" name="guests" required min="1" max="20" class="input" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Date -->
+      <div class="form-group">
+        <label for="date">Date <span style="color: red;">*</span></label>
+        <input type="date" id="date" [(ngModel)]="reservation.date" name="date" #date="ngModel" class="input" required />
+        <div *ngIf="date.invalid && date.touched" class="error-text">⚠ Please Select any Date</div>
+        <div *ngIf="reservation.date && !isDateValid() && date.touched" class="error-text">⚠ Date must be within 30 days</div>
+      </div>
+
+      <!-- Time -->
+      <div class="form-group">
+        <label for="time">Time <span style="color: red;">*</span></label>
+        <select id="time" [(ngModel)]="timeDisplay" name="time" class="input" (ngModelChange)="onTimeChange($event)">
+          <option value="">Select Time</option>
+          <option *ngFor="let time of timeOptions" [value]="time">{{ time }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Table Type -->
+      <div class="form-group">
+        <label for="table-type">Table Type <span style="color: red;">*</span></label>
+        <select id="table-type" [(ngModel)]="reservation.tableType" name="tableType" required class="input">
+          <option value="VIP">VIP</option>
+          <option value="Premium">Premium</option>
+          <option value="Economic">Economic</option>
+        </select>
+      </div>
+
+      <!-- Special Requests -->
+      <div class="form-group">
+        <label for="requests">Special Requests</label>
+        <textarea id="requests" [(ngModel)]="reservation.requests" name="requests" class="input" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="action-buttons">
+      <button type="submit" class="submit-button" [disabled]="reservationForm.invalid">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+      <button type="button" class="cancel-button" (click)="cancel()">Cancel</button>
+    </div>
+
+  </form>
+</div>
+</div>

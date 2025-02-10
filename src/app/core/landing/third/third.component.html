@@ -1,0 +1,99 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+<div class="container text-center my-3">
+  <div id="awards">
+  <h1 class="text-center award-heading my-4">Our Awards</h1>
+  <div class="award-body text-center px-4">
+    Welcome to the finest dining experience in the country! Renowned for its
+    exceptional service and award-winning excellence, Cozy Table Restaurant is
+    dedicated to creating unforgettable moments for our guests. Your happiness
+    and satisfaction are at the heart of everything we do, and we promise to
+    continue delivering excellence for years to come. For more information,
+    visit us today!
+  </div>
+  <div>
+    <div class="scrollable-horizontal-bar w-100 ">
+      <div class="images">
+        <img
+          *ngFor="let image of images"
+          [src]="image"
+          [alt]="'Image ' + image"
+          class="image m-3"
+        />
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="reviews"> 
+    <h1 class="text-center award-heading my-5">5-star feedbacks</h1>
+    <div *ngIf="fiveStarFeedback.length > 3" class="feedback-scrollable">
+      <div *ngFor="let feedback of fiveStarFeedback" class="feedback-item">
+        <h3>{{ feedback.name }}</h3>
+        <p>{{ feedback.feedback }}</p>
+      </div>
+    </div>
+    <div *ngIf="fiveStarFeedback.length <= 3">
+      <div *ngFor="let feedback of fiveStarFeedback" class="feedback-item">
+        <h3>{{ feedback.name }}</h3>
+        <p>{{ feedback.feedback }}</p>
+      </div>
+    </div>
+  </div>  
+
+<div class="footer-content">
+  <div class="footer-column about">
+    <h3>About Us</h3>
+    <p>At <strong>Cozy Table Restaurant</strong>, we provide a welcoming atmosphere to enjoy authentic Indian cuisine with loved ones. Every dish is crafted for your enjoyment.</p>
+    <p>🕒 <strong>Open Daily:</strong> 10:00 AM - 10:00 PM</p>
+  </div>
+
+  <div class="footer-column contact">
+    <h3>Contact Us</h3>
+    <p>📍 <strong>Address:</strong> 2903 Avenue Z, Mumbai, Maharashtra, India</p>
+    <p>📞 <strong>Phone:</strong> (+91) 9876543210</p>
+    <p>📧 <strong>Email:</strong> cozytable&#64;gmail.com</p>
+  </div>
+
+  <div class="footer-column location">
+    <h3>Find Us Here</h3>
+    <div class="map">
+      <iframe title="Cozy Table Restaurant Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.2935434369277!2d-73.95892078459298!3d40.57717957934932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2zMzXCsDA0JzM3LjgiTiA3M8KwNTcnMjguMSJX!5e0!3m2!1sen!2sus!4v1614084076297!5m2!1sen!2sus"></iframe>
+    </div>
+  </div>
+
+  <div class="footer-column social-media">
+    <h3>Connect With Us</h3>
+    <ul class="social-links">
+      <li><a href="https://facebook.com/cozytable" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+      <li><a href="https://instagram.com/cozytable" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="https://twitter.com/cozytable" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="https://youtube.com/cozytable" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a></li>
+    </ul>
+  </div>
+
+  <div class="footer-column newsletter">
+    <h3>Subscribe to Our Newsletter</h3>
+    <p>Stay updated with our latest offers and news by subscribing to our newsletter:</p>
+    <div class="newsletter">
+      <form (ngSubmit)="onNewsletterSubmit()" >
+        <input 
+          type="email" 
+          name="email" 
+         
+          required
+          placeholder="Enter your email">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Cozy Table Restaurant. All rights reserved.</p>
+    <ul class="legal-links">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Sitemap</a></li>
+    </ul>
+  </div>
+</div>

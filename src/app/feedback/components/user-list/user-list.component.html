@@ -1,0 +1,202 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="container">
+  <div class="user-list-container">
+  <h2>
+    {{ loggedInUserRole === "Admin" ? "Users Feedback" : "Your Feedback" }}
+  </h2>
+  <div *ngIf="loggedInUserRole === 'Admin'" class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="searchUsers()"
+      
+      placeholder="Search by Name or Email"
+      class="search-bar"
+    />
+  </div>
+
+  <!-- Hide the button if feedback is already submitted -->
+  <button
+    *ngIf="!feedbackSubmitted && loggedInUserRole !== 'Admin'"
+    class="add-user-btn"
+    (click)="navigateToRegistration()"
+  >
+    Add Feedback
+  </button>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <ng-container *ngIf="userList.length; else noUsers">
+    <table>
+      <thead>
+        <tr>
+          <th *ngIf="loggedInUserRole === 'Admin'"><span>User ID</span></th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>
+            <div class="rating-sort-container">
+            Rating
+            <div class="sort-buttons-container">
+            <button
+              *ngIf="loggedInUserRole === 'Admin'"
+              class="sort-btn"
+              (click)="sortFeedback('asc')"
+              title="Sort Ascending"
+            >
+              &#9650;
+            </button>
+            <button
+              *ngIf="loggedInUserRole === 'Admin'"
+              class="sort-btn"
+              (click)="sortFeedback('desc')"
+              title="Sort Descending"
+            >
+              &#9660;
+            </button>
+          </div>
+        </div>
+          </th>
+          <th>Feedback</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userList; let i = index">
+          <td *ngIf="loggedInUserRole === 'Admin'">{{ user.uId }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td *ngIf="editingIndex !== i">{{ user.address }}</td>
+          <td *ngIf="editingIndex === i">
+            <input [(ngModel)]="editingUser.address" placeholder="Address" />
+          </td>
+          <td>
+            <div class="rating">
+              <span *ngIf="editingIndex !== i">
+                <span *ngFor="let star of getStars(user.rating)" class="star"
+                  >★</span
+                >
+              </span>
+              <input
+                *ngIf="editingIndex === i"
+                [(ngModel)]="editingUser.rating"
+                type="number"
+                min="1"
+                max="5"
+                placeholder="Rating"
+              />
+            </div>
+          </td>
+          <td *ngIf="editingIndex !== i">
+            {{ user.feedback || "No feedback provided" }}
+          </td>
+          <td *ngIf="editingIndex === i">
+            <textarea
+              [(ngModel)]="editingUser.feedback"
+              placeholder="Feedback"
+            ></textarea>
+          </td>
+          <td>
+            <ng-container *ngIf="loggedInUserRole !== 'Admin'">
+              <button
+                *ngIf="editingIndex !== i"
+                class="btn edit-btn"
+                (click)="startEdit(i)"
+              >
+                Edit
+              </button>
+              <button
+                *ngIf="editingIndex === i"
+                class="btn save-btn"
+                (click)="saveEdit(user.id)"
+              >
+                Save
+              </button>
+              <button
+                *ngIf="editingIndex === i"
+                class="btn cancel-btn"
+                (click)="cancelEdit()"
+              >
+                Cancel
+              </button>
+              <button class="btn delete-btn" (click)="deleteUser(user.id)">
+                Delete
+              </button>
+              <button
+                class="btn show-replies-btn"
+                *ngIf="user.replies && user.replies.length > 0"
+                (click)="toggleShowReplies(user.uId)"
+              >
+                {{ user.showReplies ? "Hide Reply" : "Show Reply" }}
+              </button>
+            </ng-container>
+            <ng-container *ngIf="loggedInUserRole === 'Admin'">
+              <div class="button-container">
+              <ng-container *ngIf="user.replies && user.replies.length > 0; else showReplyButton">
+                <p class="already-replied">Replied</p>
+              </ng-container>
+              <ng-template #showReplyButton>
+                <button 
+                  class="btn reply-btn" 
+                  (click)="replyToUser(user.uId)">
+                  Reply
+                </button>
+              </ng-template>
+              
+              <button
+                class="btn show-replies-btn"
+                (click)="toggleShowReplies(user.uId)">
+                {{ user.showReplies ? 'Hide Reply' : 'Show Reply' }}
+              </button>
+            </div>
+            </ng-container>
+            <div *ngIf="replyingUserId === user.uId" class="reply-container">
+              <textarea
+                [(ngModel)]="replyMessage"
+                placeholder="Enter your reply"
+              ></textarea>
+              <div class="action-buttons">
+                <button class="btn send-reply-btn" (click)="sendReply(user.id)">
+                  Send
+                </button>
+                <button class="btn cancel-reply-btn" (click)="cancelReply()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <div *ngIf="user.showReplies" class="replies-section">
+              <p
+                *ngIf="user.replies && user.replies.length > 0; else noReplies"
+              >
+                <strong>Reply:</strong> {{ user.replies[0].message }} <br />
+                <small>{{ user.replies[0].timestamp }}</small>
+              </p>
+              <ng-template #noReplies>
+                <p>No replies yet.</p>
+              </ng-template>
+            </div>
+          
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #noUsers>
+    <table style="width: 100%; height: 100%" *ngIf="loggedInUserRole !== 'Admin'">
+      <tr>
+        <td style="text-align: center; vertical-align: middle; color: black">
+          <h3>
+            You have not submitted any feedback yet. Click "Add Feedback" to
+            submit your feedback.
+          </h3>
+        </td>
+      </tr>
+    </table>
+  </ng-template>
+  <div *ngIf="noMatchesFound" class="no-matches-message">
+  No matches found.
+</div>
+</div>
+</div>

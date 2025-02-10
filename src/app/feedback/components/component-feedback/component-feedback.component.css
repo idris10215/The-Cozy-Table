@@ -1,0 +1,163 @@
+/* Import the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap');
+
+
+/* Main Container (Form) Styling */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 50px;
+  background-color: #8ad36b;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px #d467a3; /* Orange shadow */
+  font-family: 'Montserrat', sans-serif; /* Apply Montserrat font */
+}
+
+h2 {
+  font-family: 'Lora', serif; /* Apply Lora font for headings */
+  display: block; /* Makes it a block element */
+  width: 100%; /* Spans the full width */
+  height: 90px; /* Desired height of the heading */
+  font-size: 38px; /* Font size for the heading */
+  font-weight: bold; /* Bold text */
+  color: #333; /* Text color */
+  text-align: center; /* Centers the text horizontally */
+  line-height: 90px; /* Vertically centers the text */
+  margin: 0; /* Removes default margin */
+  margin-bottom: 40px; /* Adds spacing below the heading */
+  background:  #f0f0f0; /* Linear gradient background */
+  border-radius: 10px; /* Rounds the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7); /* Adds a soft shadow to the text */
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Label Styling */
+label {
+  display: block;
+  font-weight: bold;
+  color: #101010; /* Slightly darker for contrast */
+  margin-bottom: 5px;
+}
+
+/* Input and select styling */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Input focus */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color:#d467a3;
+  outline: none;
+  box-shadow: 0 0 5px #d467a3;
+}
+
+/* Rating Stars */
+.star-rating {
+  display: flex;
+  gap: 5px; /* Space between stars */
+  cursor: pointer;
+}
+
+.star {
+  font-size: 40px; /* Larger stars */
+  color: #f2efed; /* Default color for unselected stars */
+  transition: color 0.3s ease, transform 0.2s ease; /* Smooth hover and click effects */
+}
+
+.star:hover,
+.star.selected {
+  color: #d467a3; 
+}
+
+.star:hover ~ .star {
+  color: #f8f5f2; /* Ensure stars to the right remain unselected */
+}
+
+.star:active {
+  transform: scale(1.2); /* Slight scaling effect on click */
+}
+
+/* Submit Button Styling */
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #f06292, #f8bbd0); 
+  font-weight: bold;
+  font-size: 22px;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #ec407a, #f48fb1); 
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+button[type="submit"]:disabled {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #f06292, #f8bbd0); /* Solid pink button */
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+/* Search Bar Container */
+.search-container {
+  display: flex;
+  justify-content: right;
+}
+
+/* Search Input Field */
+.search-input {
+  width: 100%;
+  max-width: 400px; /* Set a max width for the input */
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #d467a3; /* Muted blue border */
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Search Input Hover and Focus */
+.search-input:focus,
+.search-input:hover {
+  border-color: #c54b86; /* Slightly darker muted blue */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Placeholder Styling */
+.search-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+

@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap');
+.profile-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 12px;
+  background: #8ad36b;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+
+  font-family: 'Lora', serif; /* Apply Lora font for headings */
+  display: block; /* Makes it a block element */
+  width: 100%; /* Spans the full width */
+  height: 90px; /* Desired height of the heading */
+  font-size: 38px; /* Font size for the heading */
+  font-weight: bold; /* Bold text */
+  color: #333; /* Text color */
+  text-align: center; /* Centers the text horizontally */
+  line-height: 90px; /* Vertically centers the text */
+  margin: 0; /* Removes default margin */
+  margin-bottom: 40px; /* Adds spacing below the heading */
+  background:  #f0f0f0; /* Linear gradient background */
+  border-radius: 10px; /* Rounds the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7); /* Adds a soft shadow to the text */
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  display:flex;
+ 
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Adds space between buttons */
+  margin-top: 20px;
+}
+
+button {
+  display: block;
+  width: 48%; /* Adjust width for better spacing */
+  padding: 12px; /* Reduce height */
+  background: linear-gradient(135deg, #f06292, #f8bbd0); 
+  color: white;
+  font-weight: bold;
+  font-size: 18px; /* Slightly reduce font size */
+  border: none;
+  border-radius: 14px; /* Slightly rounder edges */
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ec407a, #f48fb1);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}

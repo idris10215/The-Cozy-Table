@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap');
+
+.cart-container {
+  top: 50px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+  margin-bottom: 100px; /* Added more margin below */
+  background-color:#8ad36b; 
+  border-radius: 25px; 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  animation: fadeIn 0.8s ease-in;
+}
+
+
+.cart-container h2 {
+  font-family: 'Lora', serif; /* Apply Lora font for headings */
+  display: block; /* Makes it a block element */
+  width: 100%; /* Spans the full width */
+  height: 90px; /* Desired height of the heading */
+  font-size: 38px; /* Font size for the heading */
+  font-weight: bold; /* Bold text */
+  color: #333; /* Text color */
+  text-align: center; /* Centers the text horizontally */
+  line-height: 90px; /* Vertically centers the text */
+  margin: 0; /* Removes default margin */
+  margin-bottom: 40px; /* Adds spacing below the heading */
+  background:  #f0f0f0; /* Linear gradient background */
+  border-radius: 10px; /* Rounds the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7); /* Adds a soft shadow to the text */
+}
+
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #191818;
+  border-bottom: 1px solid #07060645;
+  padding-bottom: 15px;
+}
+
+
+.item-image {
+  width: 70px; /* Aligns with .menu-image width */
+  height: 70px; /* Consistent height */
+  object-fit: cover;
+  border-radius: 8px; /* Consistent with overall border style */
+  margin-right: 20px;
+  border: 1px solid #ccc; /* Matches the menu image style */
+}
+
+/* Item Info and Name */
+.item-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 20px;
+}
+
+.item-name {
+  flex: 2;
+  font-size: 20px;
+  font-weight: 550;
+  color: #333; /* Dark text for clarity */
+}
+
+/* Item Price */
+.item-price {
+  flex: 1;
+  font-size: 18px;
+  color: #3e3d3d;
+  text-align: center;
+}
+
+/* Quantity and Buttons */
+.item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.item-quantity button {
+  width: 35px;
+  height: 35px;
+  background-color: #f5f5f5; /* Matches light gray button background */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.quantity-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.quantity-btn:active {
+  transform: scale(0.95); /* Click feedback */
+}
+
+.decrease {
+  color: #d32f2f; /* Red for decrease */
+}
+
+.increase {
+  color: #388e3c; /* Green for increase */
+}
+
+.item-quantity input {
+  width: 50px;
+  height: 35px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.dustbin-icon {
+  width: 45px; 
+  height: 45px;
+  border-radius: 4px;
+  cursor: pointer;
+  object-fit: contain; /* Ensures the icon maintains its proportions */
+  transition: transform 0.2s; /* Smooth zoom effect */
+}
+
+.dustbin-icon:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.item-remove button {
+  background: none; /* Remove the button's default background */
+  border: none; /* Remove the button's border */
+  padding: 0; /* Remove default padding */
+  cursor: pointer; /* Ensure the pointer changes to indicate interactivity */
+  display: flex; /* Center the icon */
+  align-items: center;
+  justify-content: center;
+}
+
+.item-remove button:focus {
+  outline: none; /* Remove focus outline for a cleaner look */
+}
+/* Cart Summary */
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-top: 20px;
+}
+
+.total {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.checkout-button {
+  background-color: #d467a3; /* Muted blue for buttons */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: rgb(171, 83, 135); /* Darker muted blue on hover */
+}
+
+
+.empty-cart-container {
+  top: 50px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 30px;
+  margin-bottom: 100px; /* Added more margin below */
+  background-color:white; 
+  border-radius: 25px; 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+  position:relative;
+  animation: fadeIn 0.8s ease-in;
+}
+
+.empty-cart-container h2 {
+  font-family: 'Lora', serif; /* Apply Lora font for headings */
+  display: block; /* Makes it a block element */
+  width: 100%; /* Spans the full width */
+  height: 90px; /* Desired height of the heading */
+  font-size: 38px; /* Font size for the heading */
+  font-weight: bold; /* Bold text */
+  color: #333;
+  text-align: center;
+  line-height: 90px;
+  margin-bottom: 40px; 
+
+}
+
+
+.cart-gif {
+  width: 350px;
+  height: auto;
+  margin-bottom: 20px;
+  margin-left: 300px;
+}
+

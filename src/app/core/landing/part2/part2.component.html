@@ -1,0 +1,55 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+
+<head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<!-- BestSelling Items Section -->
+<div class="best-selling-dishes-container" id="bestsellers">
+  <h2>Best Selling Dishes</h2>
+  <div class="dishes-list">
+    <div *ngFor="let dish of bestSellingDishes" class="dish-card">
+      <img [src]="dish.image" alt="{{ dish.name }}" class="dish-image" />
+      <div class="dish-details">
+        <h3 class="dish-name">{{ dish.name }}</h3>
+        <p class="dish-description">{{ dish.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Our Services Section -->
+<div class="our-services" id="services">
+  <h2>Our Services</h2>
+  <p>This is what we do and we do it perfectly.</p>
+  <div class="services-list">
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <h3>Fresh Healthy Food</h3>
+      <p>Savor the goodness of fresh, healthy, and flavorful meals crafted with care for your well-being.</p>
+    </div>
+    <div class="service-card green-bg">
+      <div class="service-icon white-icon">
+        <i class="fas fa-truck"></i>
+      </div>
+      <h3>Free Fast Home Delivery</h3>
+      <p>Get your favorite meals delivered quickly and effortlessly, free of charge!</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <i class="fas fa-tags"></i>
+      </div>
+      <h3>Discount Voucher</h3>
+      <p>Save more on every order with our exclusive discount vouchers.</p>
+    </div>
+    <div class="service-card green-bg">
+      <div class="service-icon white-icon">
+        <i class="fas fa-clock"></i>
+      </div>
+      <h3>On Time Service</h3>
+      <p>Count on us for reliable and punctual service every time.</p>
+    </div>
+  </div>
+</div>

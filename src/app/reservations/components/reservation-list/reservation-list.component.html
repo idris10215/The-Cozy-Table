@@ -1,0 +1,93 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="container">
+  <div class="table-container">
+    <h2>Reservations</h2>
+    <div class="btn-container">
+      <!-- Sorting Controls -->
+      <div class="sort-controls">
+        <select [(ngModel)]="sortBy" (change)="onSortChange()" class="sort-select">
+          <option value="date">Sort by Date</option>
+          <option value="name">Sort by Name</option>
+          <option value="email">Sort by Email</option>
+          <option value="phone">Sort by Phone</option>
+          <option value="time">Sort by Time</option>
+          <option value="guests">Sort by Guests</option>
+          <option value="tableType">Sort by Table Type</option>
+        </select>
+        
+        <button (click)="toggleSortOrder()" class="sort-order-btn">
+          {{ sortOrder === 'asc' ? '↑' : '↓' }}
+        </button>
+      </div>
+      <button *ngIf="userRole === 'Customer'" [routerLink]="['/add']" class="btn-add">
+        Add Reservation
+      </button>
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input type="text" [(ngModel)]="searchQuery" 
+               (input)="filterReservations()" 
+               placeholder="Search Reservations..." 
+               class="search-input" />
+      </div>
+    </div>
+
+    <div *ngIf="isLoading">Loading...</div>
+    
+    <table *ngIf="!isLoading && (upcomingReservations.length > 0 || pastReservations.length > 0)">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Guests</th>
+          <th>Table Type</th>
+          <th>Requests</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Upcoming Reservations -->
+        <tr *ngFor="let reservation of upcomingReservations">
+          <td>{{ reservation.name }}</td>
+          <td>{{ reservation.email }}</td>
+          <td>{{ reservation.phone }}</td>
+          <td>{{ reservation.date | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ reservation.time }}</td>
+          <td>{{ reservation.guests }}</td>
+          <td>{{ reservation.tableType }}</td>
+          <td>{{ reservation.requests }}</td>
+          <td>
+            <div>
+              <button [routerLink]="['/edit', reservation.id]" class="edit-button">Edit</button>
+              <button (click)="deleteReservation(reservation.id)" class="delete-button">Delete</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Past Reservations Header -->
+        <!-- <tr class="past-header" *ngIf="pastReservations.length > 0">
+          <td colspan="9"><h3>Past Reservations</h3></td>
+        </tr> -->
+
+        <!-- Past Reservations -->
+        <tr *ngFor="let reservation of pastReservations">
+          <td>{{ reservation.name }}</td>
+          <td>{{ reservation.email }}</td>
+          <td>{{ reservation.phone }}</td>
+          <td>{{ reservation.date | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ reservation.time }}</td>
+          <td>{{ reservation.guests }}</td>
+          <td>{{ reservation.tableType }}</td>
+          <td>{{ reservation.requests }}</td>
+          <td><!-- Empty cell for actions --></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p *ngIf="!isLoading && upcomingReservations.length === 0 && pastReservations.length === 0">
+      No reservations found.
+    </p>
+  </div>
+</div>

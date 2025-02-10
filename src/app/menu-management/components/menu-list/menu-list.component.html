@@ -1,0 +1,95 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="container">
+  <!-- Table Container -->
+  <div class="table-container">
+    <h2>Menu Management</h2>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="filterMenuItems()"
+        placeholder="Search items by name"
+        class="search-input"
+      />
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Item ID</th>
+          <th>Name</th>
+          <th>
+            Category
+            <button (click)="sortByCategory()" class="sort-button">Sort</button>
+          </th>
+          <th>Price (₹)</th>
+          <th>Availability</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let menu of filteredMenuItems">
+          <!-- Item ID -->
+          <td>{{ menu.id }}</td>
+
+          <!-- Editable Name -->
+          <td *ngIf="editingMenuId !== menu.id">{{ menu.name }}</td>
+          <td *ngIf="editingMenuId === menu.id">
+            <input [(ngModel)]="tempMenuData.name" placeholder="Enter new name" />
+          </td>
+
+          <!-- Editable Category -->
+          <td *ngIf="editingMenuId !== menu.id">{{ menu.category }}</td>
+          <td *ngIf="editingMenuId === menu.id">
+            <input [(ngModel)]="tempMenuData.category" placeholder="Enter new category" />
+          </td>
+
+          <!-- Editable Price -->
+          <td *ngIf="editingMenuId !== menu.id">{{ menu.price }}</td>
+          <td *ngIf="editingMenuId === menu.id">
+            <input [(ngModel)]="tempMenuData.price" type="number" placeholder="Enter new price" />
+          </td>
+
+          <!-- Editable Availability -->
+          <td *ngIf="editingMenuId !== menu.id">
+            {{ menu.availability ? 'Available' : 'Not Available' }}
+          </td>
+          <td *ngIf="editingMenuId === menu.id">
+            <input [(ngModel)]="tempMenuData.availability" type="checkbox" /> Available
+          </td>
+
+          <!-- Editable Description -->
+          <td *ngIf="editingMenuId !== menu.id">{{ menu.description }}</td>
+          <td *ngIf="editingMenuId === menu.id">
+            <input [(ngModel)]="tempMenuData.description" placeholder="Enter description" />
+          </td>
+
+          <!-- Editable Image -->
+          <td *ngIf="editingMenuId !== menu.id">
+            <img [src]="menu.image" alt="Menu Image" class="menu-image" />
+          </td>
+          <td *ngIf="editingMenuId === menu.id">
+            <input [(ngModel)]="tempMenuData.image" placeholder="Enter image URL" />
+          </td>
+
+          <!-- Actions -->
+          <td class="actions">
+            <button *ngIf="editingMenuId === menu.id" (click)="saveMenuItem()" class="save-button">Save</button>
+            <button *ngIf="editingMenuId === menu.id" (click)="cancelEdit()" class="cancel-button">Cancel</button>
+            <button *ngIf="editingMenuId !== menu.id" (click)="editMenuItem(menu)" class="edit-button">Edit</button>
+            <button *ngIf="editingMenuId !== menu.id" (click)="deleteMenuItem(menu.id)" class="delete-button">Delete</button>
+          </td>
+        </tr>
+
+        <!-- No Results Found -->
+        <tr *ngIf="filteredMenuItems.length === 0">
+          <td colspan="8" class="no-results">No items found matching your search.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

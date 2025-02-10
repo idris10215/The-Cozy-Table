@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures full height */
+    margin: 0;
+    background-color: #f7f7f7;
+}
+
+.container {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 50px;
+}
+
+.reservation-form {
+    background-color: #8ad36b;
+    color: black;
+    padding: 30px;
+    border-radius: 20px;
+    width: 700px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+h2{
+    font-family: 'Lora', serif;
+    display: block;
+    width: 100%;
+    height: 90px;
+    font-size: 38px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    line-height: 90px;
+    margin: 0 0 40px 0;
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7);
+}
+
+/* Two-column layout */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-family: "Poppins", serif;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: "Poppins", serif;
+}
+
+.input:focus {
+    border-color: #b21e4b;
+    outline: none;
+    box-shadow: 0 0 5px rgba(178, 30, 75, 0.5);
+}
+
+.error-text {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 3px;
+}
+
+/* Buttons */
+button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.submit-button {
+    background-color: #4CAF50;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+.cancel-button {
+    background-color: #e0913c;
+}
+
+.cancel-button:hover {
+    background-color: #985040;
+}
+
+.submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Responsive: Adjusts to single column on small screens */
+@media (max-width: 600px) {
+    .reservation-form {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+}

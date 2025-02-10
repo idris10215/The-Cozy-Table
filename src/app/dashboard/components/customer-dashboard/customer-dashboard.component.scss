@@ -1,0 +1,28 @@
+.order-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    margin: 12px 0;
+
+    .progress {
+      height: 100%;
+      background: #4CAF50;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+  }
+}
+
+.no-orders {
+  text-align: center;
+  padding: 24px;
+  color: #666;
+} 

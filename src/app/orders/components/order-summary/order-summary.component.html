@@ -1,0 +1,61 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="payment-page-container">
+    
+    <div class="payment-container">
+        <h2>Order Summary</h2>
+        <div class="order-details">
+          <p>Items ({{ itemCount }}): <span>Rs {{ totalItemsCost }}</span></p>
+          <p>Shipping and handling: <span>Rs {{ shippingCost }}</span></p>
+          <p>Before tax: <span>Rs {{ totalItemsCost + shippingCost }}</span></p>
+          <p>Tax Collected: <span>Rs {{ taxCollected  | number:'1.2-2' }}</span></p>
+          <div class="coupon-box">
+            <input
+              type="text"
+              id="coupon"
+              [(ngModel)]="couponCode"
+              placeholder="Enter coupon code"
+            />
+            <button (click)="applyCoupon()">Apply</button>
+          </div>
+          <p *ngIf="couponMessage" [ngClass]="{ success: isCouponValid, error: !isCouponValid }">
+            {{ couponMessage }}
+          </p>
+        </div>
+          <hr />
+
+          <div class="address-container">
+            <label for="address">Address <span class="required">*</span>:</label>
+            <textarea
+              id="address"
+              [(ngModel)]="address"
+              placeholder="Enter your address"
+              required
+              minlength="10"
+              rows="4"
+              cols="60"
+            ></textarea>
+            <p *ngIf="address && address.length < 10" class="validation-error">
+              Address must be at least 10 characters long.
+            </p>
+            
+            <label for="pincode">Pin Code <span class="required">*</span>:</label>
+            <input
+              type="text"
+              id="pincode"
+              [(ngModel)]="pinCode"
+              placeholder="Enter 6-digit pin code"
+              required
+              pattern="^[0-9]{6}$"
+            />
+          </div>
+
+          <p class="total">Order Total: <span>Rs {{ finalTotal | number:'1.2-2' }}</span></p>
+        
+        <p class="terms">
+          By placing your order, you agree to our company 
+          <a href="#">Privacy policy</a> and 
+          <a href="#">Conditions of use</a>.
+        </p>
+        <button class="place-order-button" (click)="handlePlaceOrder()" [disabled]="!isFormValid()">Place Order</button>
+    </div>
+</div>

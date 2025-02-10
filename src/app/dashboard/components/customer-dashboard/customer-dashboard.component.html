@@ -1,0 +1,247 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome, {{ user?.FullName }}</h1>
+    <p>Explore delicious meals and exciting offers.</p>
+  </header>
+
+  <div class="container">
+
+      <!-- Promotions Section -->
+      <div class="promotion">
+        <h3>Get 20% off on orders above ₹500! using FESTIVE20</h3>
+      </div>
+
+<!-- Quick Access Cards -->
+<div class="section-title">Quick Actions</div>
+<div class="cards">
+  <div class="card">
+    <h2>Order Now</h2>
+    <p>Browse our menu and place your order.</p>
+    <button (click)="goToMenu()">View Menu</button>
+  </div>
+  <div class="card">
+    <h2>My Cart</h2>
+    <p>Check your current cart items easily.</p>
+    <button (click)="goToCart()">Go to Cart</button>
+  </div>
+  <div class="card">
+    <h2>My Reservations</h2>
+    <p>Check your current reservations easily.</p>
+    <button (click)="goToReservation()">Go to Reservations</button>
+  </div>
+  
+</div>
+
+<!-- Display the coupons when showCoupons is true -->
+<div *ngIf="showCoupons">
+  <h3>Your Coupons:</h3>
+  <ul>
+    <li *ngFor="let coupon of coupons">
+      {{ coupon.code }} - {{ coupon.discount }}% Off
+    </li>
+  </ul>
+</div>
+
+<div class="summary-container">
+  <div class="summary-box">
+    <h3>Your Total Orders</h3>
+    <p>{{ totalOrders }}</p>
+  </div>
+  <div class="summary-box">
+    <h3>Total Money Spent</h3>
+    <p>₹{{ totalSpent.toFixed(2) }}</p>
+  </div>
+</div>
+
+      <!-- Bubble Graph Section -->
+      <section class="menu-sales">
+        <div class="bubble-graph">
+          <h4>Your Favourite Items</h4>
+          <canvas id="bubbleCanvas" class="bubble-canvas"></canvas>
+        </div>
+
+        <!-- Table for Top-Selling Items -->
+        <div class="sales-table">
+          <h4>Your Favourite Items</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>Menu ID</th>
+      <th>Menu Name</th>
+      <th>Quantity</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of mostSoldItems">
+                <td>{{ item.menuId }}</td>
+      <td>{{ item.menuName }}</td>
+      <td>{{ item.quantity }}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+     <!-- Recommended Items -->
+<div class="section-title">Recommended Items</div>
+<div class="cards">
+  <div class="card" *ngFor="let item of recommendedItems">
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.description }}</p>
+    <button (click)="addToCart(item)">Order Now</button>
+  </div>
+</div>
+
+    
+    <!-- Active Orders Section -->
+
+<div class="container mt-4">
+  <h2 class="mb-4">Active Orders</h2>
+  
+  <div *ngIf="activeOrders.length === 0" class="alert alert-info">
+    No active orders at the moment
+  </div>
+
+  <div *ngFor="let order of activeOrders" class="card mb-3">
+    <div class="card-header bg-light">
+      <h5 class="mb-0">Order #{{order.id}}</h5>
+    </div>
+    <div class="card-body">
+      <!-- Progress bar -->
+      <div class="progress mb-4" style="height: 25px;">
+        <div [class]="getProgressBarClasses(order.status)"
+             role="progressbar" 
+             [ngStyle]="getProgressBarStyles(order.status)"
+             [attr.aria-valuenow]="getProgressPercentage(order.status)" 
+             aria-valuemin="0" 
+             aria-valuemax="100">
+          <span class="progress-text">{{getStatusText(order.status)}}</span>
+        </div>
+      </div>
+      
+      <!-- Order details -->
+      <div class="row">
+        <div class="col-md-6">
+          <p class="mb-2"><strong>Order Date:</strong> {{order.orderDate | date:'medium'}}</p>
+          <p class="mb-3"><strong>Total Amount:</strong> ₹{{order.total}}</p>
+        </div>
+        <div class="col-md-6">
+          <strong>Items:</strong>
+          <ul class="list-unstyled mt-2">
+            <li *ngFor="let item of order.items" class="mb-1">
+              {{item.name}} × {{item.quantity}} - ₹{{item.price}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="section-title">Have a Question?</div>
+    <div class="question-box">
+      <h2>Ask Us Anything!</h2>
+      <textarea [(ngModel)]="userQuestion" placeholder="Type your question here..."></textarea>
+      <button (click)="submitQuestion()">Submit Question</button>
+    </div>
+  </div>
+    
+</body>
+</html>
+
+<style>
+.order-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 20px 0;
+  position: relative;
+  padding: 0 20px;
+}
+
+.order-progress::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.step-dot {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Status-specific colors */
+.progress-step.active[data-status="ORDER_PLACED"] .step-dot {
+  background: #ff69b4; /* Pink */
+  box-shadow: 0 0 10px #ff69b4;
+}
+
+.progress-step.active[data-status="PAYMENT_COMPLETED"] .step-dot {
+  background: #ffa500; /* Orange */
+  box-shadow: 0 0 10px #ffa500;
+}
+
+.progress-step.active[data-status="PREPARING"] .step-dot {
+  background: #4169e1; /* Royal Blue */
+  box-shadow: 0 0 10px #4169e1;
+}
+
+.progress-step.active[data-status="COMPLETED"] .step-dot {
+  background: #32cd32; /* Lime Green */
+  box-shadow: 0 0 10px #32cd32;
+}
+
+.progress-step span {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.progress-step.active span {
+  font-weight: bold;
+}
+
+/* Status-specific text colors */
+.progress-step.active[data-status="ORDER_PLACED"] span {
+  color: #ff69b4;
+}
+
+.progress-step.active[data-status="PAYMENT_COMPLETED"] span {
+  color: #ffa500;
+}
+
+.progress-step.active[data-status="PREPARING"] span {
+  color: #4169e1;
+}
+
+.progress-step.active[data-status="COMPLETED"] span {
+  color: #32cd32;
+}
+</style>

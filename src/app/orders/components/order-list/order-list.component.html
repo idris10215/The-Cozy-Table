@@ -1,0 +1,89 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+   <div *ngIf="orders.length > 0" class="order-page">
+    <h2 *ngIf="!isAdmin">My Previous Orders</h2>
+    <h2 *ngIf="isAdmin">All User Orders</h2>
+
+    <div class="search-container" >
+      
+      <!-- Dropdown to select the filter type -->
+      <!-- <label for="filterType">Filter by:</label> -->
+      <select id="filterType" [(ngModel)]="selectedFilter" (change)="filterOrders()" class="search-type">
+        <option value="orderId">Order ID</option>
+        <option *ngIf="isAdmin" value="userId">User ID</option>
+        <option value="orderDate">Order Date</option>
+        <option value="itemName">Item Name</option>
+      </select>
+    
+      <!-- Search input field -->
+      <input class="search-input" *ngIf="selectedFilter !== 'orderDate'" type="text" [(ngModel)]="searchQuery" placeholder="Search..." (input)="filterOrders()" />
+      <input class="date-picker" *ngIf="selectedFilter === 'orderDate'" type="date" [(ngModel)]="selectedDate" (change)="filterOrders()" />
+    </div>
+    
+    <div *ngFor="let order of filteredOrders" class="order-card">
+      <div class="order-header">
+        <h3>Order ID: {{ order.id }}</h3>
+        <h3 *ngIf="isAdmin">User ID: {{ order.userId }}</h3>
+        <h5 class="order-details">Order Date: {{ order.orderDate | date: 'short' }}</h5>
+        <h5>Total: Rs {{ order.total | number: '1.2-2' }}</h5>
+        <div *ngIf="!isAdmin && order.id">
+          <h4>Order Status: {{ getOrderStatus(order.status) }}</h4>
+        </div>
+      </div>
+  
+
+      <div *ngIf="isAdmin && order.id" class="order-status-container">
+        <h4>Order Status:</h4>
+        <label>
+          <input type="checkbox" [checked]="order.status['order received']" 
+                 (change)="updateOrderStatus(order.id, 'order received')" 
+                 [disabled]="order.status['order received']" />
+          Order Received
+        </label>
+        <label>
+          <input type="checkbox" [checked]="order.status['cooking']" 
+                 (change)="updateOrderStatus(order.id, 'cooking')" 
+                 [disabled]="order.status['cooking']" />
+          Cooking
+        </label>
+        <label>
+          <input type="checkbox" [checked]="order.status['order on the way']" 
+                 (change)="updateOrderStatus(order.id, 'order on the way')" 
+                 [disabled]="order.status['order on the way']" />
+          Order on the Way
+        </label>
+        <label>
+          <input type="checkbox" [checked]="order.status['food delivered']" 
+                 (change)="updateOrderStatus(order.id, 'food delivered')" 
+                 [disabled]="order.status['food delivered']" />
+          Food Delivered
+        </label>
+      </div>
+      
+  
+      <!-- Display order items -->
+      <div class="order-items">
+        <table>
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of order.items">
+              <td>{{ item.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>Rs {{ item.price | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <!-- If no orders found -->
+  <div *ngIf="filteredOrders.length === 0" class="order-page">
+    <h2>No orders found.</h2>
+  </div>
+  

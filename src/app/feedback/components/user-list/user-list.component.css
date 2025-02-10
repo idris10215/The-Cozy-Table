@@ -1,0 +1,437 @@
+/* Import the fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap");
+
+/* Add fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  padding: 50px;
+  width: 100%;
+  height: 100%;
+}
+
+.user-list-container {
+  width: 100%; /* Keep full width */
+  max-width: 1300px; /* Optional: Set a maximum width for larger screens */
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #8ad36b; /* Light green background */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
+}
+
+/* Heading and Button Styling */
+h2 {
+  font-family: "Lora", serif; /* Apply Lora font for headings */
+  display: block; /* Makes it a block element */
+  width: 100%; /* Spans the full width */
+  height: 90px; /* Desired height of the heading */
+  font-size: 38px; /* Font size for the heading */
+  font-weight: bold; /* Bold text */
+  color: #333; /* Text color */
+  text-align: center; /* Centers the text horizontally */
+  line-height: 90px; /* Vertically centers the text */
+  margin: 0; /* Removes default margin */
+  margin-bottom: 40px; /* Adds spacing below the heading */
+  background: #f0f0f0; /* Linear gradient background */
+  border-radius: 10px; /* Rounds the corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a light shadow for depth */
+  text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.7); /* Adds a soft shadow to the text */
+}
+
+.add-user-btn {
+  padding: 12px 20px;
+  background-color: #5b7c99; /* Muted blue */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  transition: background-color 0.3s ease;
+}
+
+.add-user-btn:hover {
+  background-color: #d467a3; /* Darker pink on hover */
+}
+
+/* Error and Success Messages */
+.success-message,
+.error-message {
+  padding: 12px;
+  margin: 10px 0;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.success-message {
+  background-color: #6cbf84; /* Green success message */
+}
+
+.error-message {
+  background-color: #e76f51; /* Soft red error message */
+}
+
+/* Filter Section */
+.filter-container {
+  margin-bottom: 20px;
+}
+
+.filter-label {
+  font-size: 16px;
+  color: black; /* Ensure the label color is black */
+  margin-right: 10px;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #5a6268; /* Updated color for the filter button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #4e555b; /* Darker shade of #5a6268 on hover */
+}
+
+/* Table Styling */
+table {
+  width: 100%; /* Make sure the table takes the full container width */
+  max-width: 100%; /* Avoid any overflow */
+  height: auto; /* Automatically adjust height based on content */
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed; /* Ensures columns are evenly distributed */
+  word-wrap: break-word;
+}
+
+th,
+td {
+  padding: 12px 13px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: black;
+  word-wrap: break-word; /* Ensures long text wraps within the cell */
+}
+
+th {
+  background-color: #d467a3;
+  color: white;
+  font-weight: bold;
+}
+
+td {
+  color: black;
+}
+
+table tr:hover td {
+  background-color: #f8f8f8;
+}
+
+td input,
+td textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+  color: black;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #5b7c99;
+  outline: none;
+  box-shadow: 0 0 5px rgba(91, 124, 153, 0.4);
+}
+
+/* Responsive Design for Tables */
+@media (max-width: 900px) {
+  table {
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  .add-user-btn {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/* Star Rating - Always Yellow (Unchanged) */
+.star-rating {
+  display: flex;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.star {
+  font-size: 25px; /* Larger stars for better visibility */
+  color: #e35813; /* Bright yellow for selected stars by default */
+  transition: transform 0.2s ease;
+}
+
+/* Hover effect - Slight scale when hovering */
+.star:hover {
+  transform: scale(1.2); /* Slight scaling effect on hover */
+}
+
+/* Buttons Styling */
+button {
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none; /* Remove border */
+}
+
+.edit-btn {
+  background-color: #6cbf84; /* Green edit button */
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #58a76e; /* Darker green on hover */
+}
+
+.save-btn {
+  background-color: #5b7c99; /* Muted blue for save button */
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #4f6d80; /* Slightly darker muted blue */
+}
+
+.cancel-btn {
+  background-color: #e0913c; /* Pastel orange */
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #985040; /* Darker orange */
+}
+
+.delete-btn {
+  background-color: #e76f51; /* Soft red */
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d85c41; /* Darker red */
+}
+
+.reply-btn {
+  background-color: #5b7c99; /* Muted blue (Unchanged) */
+  color: white;
+}
+
+.reply-btn:hover {
+  background-color: #4f6d80; /* Slightly darker muted blue */
+}
+
+/* Styling for Show Replies Button (Unchanged) */
+.show-replies-btn {
+  background-color: #6c757d; /* Neutral gray color */
+  color: white;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  width: 120px;
+  height: 37px;
+  margin-top: 2px;
+}
+
+.show-replies-btn:hover {
+  background-color: #5a6268; /* Darker gray for hover effect */
+}
+
+/* Reply Container Styling */
+.reply-container {
+  margin-top: 10px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea:focus {
+  border-color: #5b7c99; /* Muted blue focus */
+  box-shadow: 0 0 5px rgba(91, 124, 153, 0.4);
+}
+
+/* Replies Section Styling */
+.replies-section {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9; /* Soft gray */
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.replies-section p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+  .user-list-container {
+    padding: 20px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th,
+  td {
+    padding: 10px;
+  }
+
+  .add-user-btn {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+/* Sort Button Styling */
+.sort-btn {
+  background-color: #6cbf84; /* Green to match the edit button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 3px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.sort-buttons-container {
+  display: inline-flex;
+  gap: 5px;
+}
+.rating-sort-container {
+  display: flex; /* Enables horizontal alignment */
+  align-items: center; /* Aligns text and buttons vertically */
+  gap: 7px; /* Adds space between "Rating" and the buttons */
+}
+
+/* Hover effect */
+.sort-btn:hover {
+  background-color: #58a76e; /* Darker green on hover */
+  transform: scale(1.1); /* Slight scaling on hover */
+}
+
+/* Active effect for better feedback */
+.sort-btn:active {
+  background-color: #4f9462; /* Even darker green when active */
+  transform: scale(1); /* Reset scaling when active */
+}
+
+.already-replied {
+  font-size: 16px;
+}
+
+.no-matches-message {
+  font-size: 20px;
+  color: white;
+}
+.cancel-reply-btn {
+  background-color: #e0913c; /* Pastel orange */
+  color: white;
+}
+.cancel-reply-btn:hover {
+  background-color: #985040;
+}
+.send-reply-btn {
+  background-color: #5b7c99; /* Muted blue for save button */
+  color: white;
+}
+.send-reply-btn:hover {
+  background-color: #4f6d80;
+}
+
+/* Search Bar Container */
+.search-container {
+  display: flex;
+  justify-content: right;
+}
+
+/* Search Input Field */
+.search-bar {
+  /* Changed from .search-input to .search-bar */
+  width: 100%;
+  max-width: 400px; /* Set a max width for the input */
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #d467a3; /* Muted blue border */
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Search Input Hover and Focus */
+.search-bar:focus,
+.search-bar:hover {
+  /* Changed from .search-input to .search-bar */
+  border-color: #c54b86; /* Slightly darker muted blue */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Placeholder Styling */
+.search-bar::placeholder {
+  /* Changed from .search-input to .search-bar */
+  color: #aaa;
+  font-style: italic;
+}
+span {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+

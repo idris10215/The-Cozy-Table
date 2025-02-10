@@ -1,0 +1,25 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="container">
+    <div class="image-container">
+        <img src="/assets/images/login.jpg" alt="Side Image">
+    </div>
+    <div class="form-container">
+        <div class="text-center">
+            <h2>Login</h2>
+            <h6>Please enter your email/phone & password</h6>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="input-container">
+                <label for="identifier">Email or Mobile Number</label>
+                <input formControlName="identifier" type="text" id="identifier" placeholder="Enter your email or mobile number" />
+            </div>
+            <div class="input-container">
+                <label for="exampleInputPassword1">Password</label>
+                <input formControlName="Password" type="password" id="exampleInputPassword1" placeholder="Enter your password" />
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+            <div id="emailHelp" class="form-text">We'll never share your email or mobile number & password with anyone else.</div>
+        </form>
+        <a routerLink="/signup">New User? Click to signup!</a>
+    </div>
+</div>

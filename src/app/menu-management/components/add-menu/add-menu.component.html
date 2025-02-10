@@ -1,0 +1,80 @@
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<div class="page-wrapper">
+  <div class="form-container">
+    <h2>Add New Menu Item</h2>
+    <form #menuForm="ngForm" (ngSubmit)="onSubmit(menuForm)">
+      <div class="form-group">
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="menu.name" required />
+      </div>
+
+      <div class="form-group-inline">
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select
+            id="category"
+            name="category"
+            [(ngModel)]="menu.category"
+            required
+            aria-required="true"
+            class="form-control"
+          >
+            <option value="">--Select Category--</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Starters">Starters</option>
+            <option value="Main Course">Main Course</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Salads">Salads</option>
+            <option value="Soup">Soup</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Kids Menu">Kids Menu</option>
+            <option value="Indian Cuisine">Indian Cuisine</option>
+            <option value="Mexican Cuisine">Mexican Cuisine</option>
+            <option value="Chinese Cuisine">Chinese Cuisine</option>
+            <option value="Italian Cuisine">Italian Cuisine</option>
+            <option value="Signature Dishes">Signature Dishes</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" [(ngModel)]="menu.price" required min="0" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="availability-group">
+          <label for="availability">Availability:</label>
+          <input type="checkbox" id="availability" name="availability" [(ngModel)]="menu.availability" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="menu.description"></textarea>
+      </div>
+
+      <div class="form-group-inline2">
+        <div class="form-group">
+          <label for="menu-image-url">Image URL:</label>
+          <input
+            type="text"
+            id="menu-image-url"
+            name="menu-image-url"
+            [(ngModel)]="imageUrl"
+            (input)="onImageUrlChange()"
+            placeholder="Enter image URL"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <img *ngIf="imagePreview" [src]="imagePreview" class="image-preview" alt="Image Preview" />
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Add Menu Item</button>
+    </form>
+  </div>
+</div>
