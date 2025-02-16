@@ -38,8 +38,8 @@ To run the project locally, follow these steps:
 
 ### 1️⃣ Clone the repository  
 ```bash
-git clone <repo-url>
-cd <project-folder>
+git clone "https://github.com/idris10215/The-Cozy-Table.git"
+cd The-Cozy-Table
 ```
 
 ### 2️⃣ Install dependencies  
