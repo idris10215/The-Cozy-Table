@@ -1,4 +1,3 @@
-Here's the **final refined README.md** with a detailed **Tech Stack** section, including technologies like **HTML, CSS, TypeScript**, and more:  
 
 ---
 
@@ -67,5 +66,3 @@ Now, the backend will be available at **http://localhost:3000/**
 This project was developed as part of my **internship**, where I contributed by designing the **front end and database structure** for the **Order Management Module**. The website is fully functional, providing a seamless experience for both **customers and admins**. 🚀  
 
 ---
-
-This version now properly highlights **all technologies** used in the project! Let me know if you'd like any further tweaks. 🔥
