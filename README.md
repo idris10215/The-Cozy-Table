@@ -1,27 +1,71 @@
-# AngularProject 
+Here's the **final refined README.md** with a detailed **Tech Stack** section, including technologies like **HTML, CSS, TypeScript**, and more:  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+---
 
-## Development server
+# The Cozy Table 🍽️  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. 
+This is a **fully functional restaurant website** developed as part of my **internship project**. My role focused on **designing the front end and database structure** for the **Order Management Module**.  
 
-## Code scaffolding 
+## Features  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+✅ **User Authentication** – Secure **Sign Up & Login** system  
+✅ **Table Reservations** – Book a table online and view existing reservations  
+✅ **Menu Management** – View menu items and manage them (Admin only)  
+✅ **Cart System** – Add items to the cart and review them before ordering  
+✅ **Order Management** – Get order details, place an order, and receive an order summary  
+✅ **Order Tracking** – Track order status in real-time  
+✅ **Feedback System** – Users can submit feedback and ratings  
+✅ **Admin Panel** – Manage reservations, orders, menu items, and customer feedback  
 
-## Build
+## Tech Stack  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Frontend:**  
+  - **Angular (TypeScript):** Used for building a dynamic and scalable user interface with a component-based architecture.  
+  - **HTML & CSS:** Structured and styled the UI for responsiveness and better user experience.  
+  - **Bootstrap & Angular Material:** Used for modern UI components and responsive design.  
 
-## Running unit tests
+- **Backend & Database:**  
+  - **JSON Server:** A lightweight, mock REST API to handle menu items, orders, reservations, and user data.  
+  - **JavaScript & TypeScript:** Used for scripting and handling logic efficiently within Angular.  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **Development Tools & Dependencies:**  
+  - **Node.js & npm:** Required for managing dependencies and running Angular CLI.  
+  - **Angular CLI:** Used to generate components, services, and manage the project structure.  
+  - **Git & GitHub:** Version control and repository management.  
 
-## Running end-to-end tests
+## Installation & Setup  
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To run the project locally, follow these steps:  
 
-## Further help
+### 1️⃣ Clone the repository  
+```bash
+git clone <repo-url>
+cd <project-folder>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 2️⃣ Install dependencies  
+```bash
+npm install
+```
+
+### 3️⃣ Run the Angular project  
+```bash
+ng serve
+```
+The app will be available at **http://localhost:4200/**  
+
+### 4️⃣ Start the JSON server (for menu, orders, and other data)  
+Navigate to the `assets` folder and run:  
+```bash
+npx json-server --watch db.json
+```
+
+Now, the backend will be available at **http://localhost:3000/**  
+
+## About This Project  
+
+This project was developed as part of my **internship**, where I contributed by designing the **front end and database structure** for the **Order Management Module**. The website is fully functional, providing a seamless experience for both **customers and admins**. 🚀  
+
+---
+
+This version now properly highlights **all technologies** used in the project! Let me know if you'd like any further tweaks. 🔥
